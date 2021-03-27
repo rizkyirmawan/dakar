@@ -26,7 +26,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach($karyawanWithAbsensi as $karyawan)
+		@foreach($karyawanWithAbsensi->where('user.role', 'CO') as $karyawan)
 		<tr>
 			<td style="border: 2px solid black;">{{ $karyawan->nik }}</td>
 			<td style="border: 2px solid black;">{{ $karyawan->nama }}</td>

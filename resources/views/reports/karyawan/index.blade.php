@@ -81,7 +81,7 @@
           </thead>
           <tbody>
 
-            @foreach($employee as $karyawan)
+            @foreach($employee->where('user.role', 'CO') as $karyawan)
             <tr>
             	<td>{{ $loop->iteration }}.</td>
               <td>{{ $karyawan->nik }}</td>

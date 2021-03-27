@@ -47,7 +47,7 @@
           </thead>
           <tbody>
 
-            @foreach($karyawanWithAbsensi as $karyawan)
+            @foreach($karyawanWithAbsensi->where('user.role', 'CO') as $karyawan)
             <tr>
             	<td>{{ $loop->iteration }}.</td>
               <td>{{ $karyawan->nik }}</td>

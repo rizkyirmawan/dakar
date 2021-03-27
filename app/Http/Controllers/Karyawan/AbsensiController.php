@@ -72,7 +72,7 @@ class AbsensiController extends Controller
     {
         $title = 'Laporan Data Absensi Karyawan';
 
-        $karyawanWithAbsensi = Karyawan::with(['absensi' => function($query) {
+        $karyawanWithAbsensi = Karyawan::with(['user', 'absensi' => function($query) {
             $query  ->whereMonth('absensi.tanggal', today()->month)
                     ->whereYear('absensi.tanggal', today()->year);
         }])->get();
@@ -83,8 +83,12 @@ class AbsensiController extends Controller
     // Export Absensi
     public function exportAbsensi()
     {
-        $kode = Str::upper(Str::random(5));
+        try {
+            $kode = Str::upper(Str::random(5));
 
-        return Excel::download(new AbsensiExport, $kode . ' - Absensi Karyawan (' . request()->filter . ').xlsx');
+            return Excel::download(new AbsensiExport, $kode . ' - Absensi Karyawan (' . request()->filter . ').xlsx');
+        } catch(\Exception $e) {
+            return back()->with('error', 'Silahkan isi filter periode.');
+        }
     }
 }

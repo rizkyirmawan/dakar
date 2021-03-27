@@ -163,7 +163,7 @@ class KaryawanController extends Controller
     {
         $title = 'Laporan Data Karyawan';
 
-        $employee = Karyawan::with('bagian', 'bank')->get();
+        $employee = Karyawan::with('user', 'bagian', 'bank')->get();
 
         return view('reports.karyawan.index', compact('title', 'employee'));
     }
@@ -171,8 +171,12 @@ class KaryawanController extends Controller
     // Export Karyawan
     public function exportKaryawan()
     {
-        $kode = Str::upper(Str::random(5));
+        try {
+            $kode = Str::upper(Str::random(5));
 
-        return Excel::download(new KaryawanExport, $kode . ' - Data Karyawan (' . request()->filter . ').xlsx');
+            return Excel::download(new KaryawanExport, $kode . ' - Data Karyawan (' . request()->filter . ').xlsx');
+        } catch(\Exception $e) {
+            return back()->with('error', 'Silahkan isi filter.');
+        }
     }
 }

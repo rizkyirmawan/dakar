@@ -30,7 +30,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach($employee as $karyawan)
+		@foreach($employee->where('user.role', 'CO') as $karyawan)
 		<tr>
 			<td style="border: 2px solid black;">{{ $karyawan->nik }}</td>
 			<td style="border: 2px solid black;">{{ $karyawan->nama }}</td>

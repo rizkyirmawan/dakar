@@ -14,17 +14,17 @@ class AbsensiExport implements FromView, ShouldAutoSize
     public function view(): View
     {
     	if (request()->filter == 'Mingguan') {
-    		$karyawanWithAbsensi = Karyawan::with(['absensi' => function($query) {
+    		$karyawanWithAbsensi = Karyawan::with(['user', 'absensi' => function($query) {
 	            $query  ->whereDate('absensi.tanggal', '>=', today()->subDays(7))
 	                    ->whereDate('absensi.tanggal', '<=', today());
 	        }])->get();
     	} elseif (request()->filter == 'Bulanan') {
-    		$karyawanWithAbsensi = Karyawan::with(['absensi' => function($query) {
+    		$karyawanWithAbsensi = Karyawan::with(['user', 'absensi' => function($query) {
 	            $query  ->whereDate('absensi.tanggal', '>=', today()->subDays(30))
 	                    ->whereDate('absensi.tanggal', '<=', today());
 	        }])->get();
     	} elseif (request()->filter == 'Tahunan') {
-    		$karyawanWithAbsensi = Karyawan::with(['absensi' => function($query) {
+    		$karyawanWithAbsensi = Karyawan::with(['user', 'absensi' => function($query) {
 	            $query  ->whereDate('absensi.tanggal', '>=', today()->subDays(365))
 	                    ->whereDate('absensi.tanggal', '<=', today());
 	        }])->get();
