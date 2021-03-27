@@ -51,7 +51,7 @@
       </a>
     </div>
     <div class="p-2">
-      <a href="#" class="btn btn-danger btn-sm btn-icon-split" data-target="#deleteModal" data-toggle="modal">
+      <a href="#" class="btn btn-danger btn-sm btn-icon-split" data-target="#delete-karyawan-{{ $karyawan->id }}" data-toggle="modal">
         <span class="icon text-white-50">
           <i class="fas fa-trash"></i>
         </span>
@@ -174,29 +174,6 @@
     </div>
   </div>
 
-  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Hapus Data</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Hapus data karyawan atas nama: {{ $karyawan->nama }}?</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-          <form action="{{ route('karyawan.destroy', ['karyawan' => $karyawan]) }}" method="post" class="d-inline">
-            
-            @method('delete')
+  @include('partials.modals.karyawan.deleteKaryawan')
 
-            @csrf
-
-            <button type="submit" class="btn btn-danger">Hapus</button>
-
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection

@@ -117,6 +117,10 @@ class KaryawanController extends Controller
     // Destroy Karyawan
     public function destroy(Karyawan $karyawan)
     {
+        if ($karyawan->foto) {
+            Storage::delete('public/' . $karyawan->foto);
+        }
+        
         $karyawan->slipGaji()->delete();
 
         $karyawan->absensi()->delete();

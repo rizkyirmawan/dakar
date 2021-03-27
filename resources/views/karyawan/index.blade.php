@@ -67,14 +67,27 @@
                     <span class="text">Detail</span>
                   </a>
                 @elseif($karyawan->status == 0)
-                  <a href="#validasi-{{ $karyawan->id }}" data-toggle="modal" class="btn btn-success btn-sm btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-check text-white-50"></i>
-                    </span>
-                    <span class="text">Aktifkan</span>
-                  </a>
+                  <div class="dropdown">
+                    <button class="btn btn-warning btn-sm btn-icon-split" data-toggle="dropdown">
+                      <span class="icon text-white-50">
+                        <i class="fas fa-cog text-white-50"></i>
+                      </span>
+                      <span class="text">Kelola</span>
+                    </button>
+                    <div class="dropdown-menu shadow animated--grow-in" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#validasi-{{ $karyawan->id }}" data-toggle="modal">
+                        <i class="fas fa-user-check fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Aktifkan
+                      </a>
+                      <a class="dropdown-item" href="#delete-karyawan-{{ $karyawan->id }}" data-toggle="modal">
+                        <i class="fas fa-user-times fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Hapus
+                      </a>
+                    </div>
+                  </div>
 
                   @include('partials.modals.karyawan.validasi')
+                  @include('partials.modals.karyawan.deleteKaryawan')
                 @endif
               </td>
             </tr>
