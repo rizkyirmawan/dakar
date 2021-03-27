@@ -78,15 +78,22 @@ class SlipGajiController extends Controller
     // Export Slip Gaji by ID
     public function exportSlipGaji($id)
     {
+        // dd(public_path('img/logo.png'));
+
         $slipGaji = SlipGaji::with(['karyawan.user', 'karyawan.bagian', 'karyawan.bank'])
                             ->where('slip_gaji.id', $id)
                             ->first();
 
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
+        $pdf = PDF::setOptions([
+                            'isHtml5ParserEnabled' => true,
+                            'isRemoteEnabled' => true,
+                            'tempDir' => public_path(),
+                            'chroot'  => public_path()
+                    ])
                     ->loadView('reports.slipGaji.exportSlipGaji', compact('slipGaji'))
                     ->setPaper('legal', 'portrait');
 
-        return $pdf->download('[Slip Gaji] ' . $slipGaji->karyawan->nama . ' (' . \Carbon\Carbon::parse($slipGaji->periode)->translatedFormat('F Y') . ')' . '.pdf');
+        return $pdf->stream('[Slip Gaji] ' . $slipGaji->karyawan->nama . ' (' . \Carbon\Carbon::parse($slipGaji->periode)->translatedFormat('F Y') . ')' . '.pdf');
     }
 
     // Export Slip Gaji by Periode
