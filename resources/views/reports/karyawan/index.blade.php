@@ -75,17 +75,27 @@
               <th>No.</th>
               <th>NIK</th>
               <th>Nama</th>
+              <th>Jabatan</th>
               <th>Tanggal Masuk</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
 
-            @foreach($employee->where('user.role', 'CO') as $karyawan)
+            @foreach($employee as $karyawan)
             <tr>
             	<td>{{ $loop->iteration }}.</td>
               <td>{{ $karyawan->nik }}</td>
               <td>{{ $karyawan->nama }}</td>
+              <td>
+                @if($karyawan->user->role == 'CO')
+                  Community Officer
+                @elseif($karyawan->user->role == 'SO')
+                  Senior Officer
+                @elseif($karyawan->user->role == 'BM')
+                  Business Manager
+                @endif
+              </td>
               <td>{{ \Carbon\Carbon::parse($karyawan->tanggal_masuk)->translatedFormat('d F Y') }}</td>
               <td>
                 @if($karyawan->status == 1)

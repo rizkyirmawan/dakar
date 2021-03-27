@@ -30,7 +30,7 @@
     <div class="card-header py-3">
     	<div class="d-flex">
     		<div class="p-2">
-    			<h6 class="font-weight-bold text-primary">Laporan Absensi Karyawan</h6>
+    			<h6 class="font-weight-bold text-primary">Laporan Absensi Community Officer</h6>
     		</div>
     	</div>
     </div>

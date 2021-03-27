@@ -25,15 +25,25 @@
 		<tr>
 			<th style="border: 2px solid black; font-weight: bold;">NIK</th>
 			<th style="border: 2px solid black; font-weight: bold;">Nama</th>
+			<th style="border: 2px solid black; font-weight: bold;">Jabatan</th>
 			<th style="border: 2px solid black; font-weight: bold;">Tanggal Masuk</th>
 			<th style="border: 2px solid black; font-weight: bold;">Status</th>
 		</tr>
 	</thead>
 	<tbody>
-		@foreach($employee->where('user.role', 'CO') as $karyawan)
+		@foreach($employee as $karyawan)
 		<tr>
 			<td style="border: 2px solid black;">{{ $karyawan->nik }}</td>
 			<td style="border: 2px solid black;">{{ $karyawan->nama }}</td>
+			<td style="border: 2px solid black;">
+				@if($karyawan->user->role == 'CO')
+					Community Officer
+				@elseif($karyawan->user->role == 'SO')
+					Senior Officer
+				@elseif($karyawan->user->role == 'BM')
+					Business Manager
+				@endif
+			</td>
 			<td style="border: 2px solid black;">{{ \Carbon\Carbon::parse($karyawan->tanggal_masuk)->translatedFormat('d F Y') }}</td>
 			<td style="border: 2px solid black;">{{ $karyawan->status == 1 ? 'Aktif' : 'Non Aktif' }}</td>
 		</tr>
