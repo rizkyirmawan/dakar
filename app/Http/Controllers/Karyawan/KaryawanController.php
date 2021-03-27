@@ -150,6 +150,14 @@ class KaryawanController extends Controller
         return back()->with('success', 'Karyawan berhasil diaktifkan.');
     }
 
+    // Non Aktifkan Karyawan
+    public function nonaktifkanKaryawan(Karyawan $karyawan)
+    {
+        $karyawan->update(['status' => 0]);
+
+        return back()->with('success', 'Karyawan berhasil dinonaktifkan.');
+    }
+
     // Index Laporan Karyawan
     public function indexLaporan()
     {

@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function() {
 			Route::patch('karyawan/{karyawan}', [KaryawanController::class, 'update'])->name('karyawan.update');
 			Route::delete('karyawan/{karyawan}', [KaryawanController::class, 'destroy'])->name('karyawan.destroy');
 			Route::patch('karyawan/validasi/{karyawan}', [KaryawanController::class, 'validasiKaryawan'])->name('karyawan.validasi');
+			Route::patch('karyawan/nonaktif/{karyawan}', [KaryawanController::class, 'nonaktifkanKaryawan'])->name('karyawan.nonaktif');
 
 			// Absensi Routes
 			Route::get('absensi', [AbsensiController::class, 'index'])->name('absensiKaryawan.index');

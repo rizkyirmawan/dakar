@@ -15,6 +15,33 @@
         <span class="text">Kembali</span>
       </a>
     </div>
+    @if($karyawan->status == 1)
+    <div class="p-2">
+      <form action="{{ route('karyawan.nonaktif', ['karyawan' => $karyawan]) }}" method="post">
+        @method('patch')
+        @csrf
+        <button type="submit" class="btn btn-secondary btn-sm btn-icon-split">
+          <span class="icon text-white-50">
+            <i class="fas fa-user-times"></i>
+          </span>
+          <span class="text">Nonaktifkan</span>
+        </button>
+      </form>
+    </div>
+    @elseif($karyawan->status == 0)
+    <div class="p-2">
+      <form action="{{ route('karyawan.validasi', ['karyawan' => $karyawan]) }}" method="post">
+        @method('patch')
+        @csrf
+        <button type="submit" class="btn btn-warning btn-sm btn-icon-split">
+          <span class="icon text-white-50">
+            <i class="fas fa-user-check"></i>
+          </span>
+          <span class="text">Aktifkan</span>
+        </button>
+      </form>
+    </div>
+    @endif
     <div class="p-2">
       <a href="{{ route('karyawan.edit', ['karyawan' => $karyawan]) }}" class="btn btn-success btn-sm btn-icon-split">
         <span class="icon text-white-50">
