@@ -140,8 +140,8 @@
                   <td>{{ $karyawan->bank->nama_bank }}</td>
                 </tr>
                 <tr>
-                  <td class="text-dark font-weight-bold">Atas Nama Bank</td>
-                  <td>{{ $karyawan->atas_nama_bank }}</td>
+                  <td class="text-dark font-weight-bold">Atas Nama Rekening</td>
+                  <td>{{ $karyawan->atas_nama_rekening }}</td>
                 </tr>
                 <tr>
                   <td class="text-dark font-weight-bold">Nomor Rekening</td>
