@@ -60,4 +60,6 @@ function refreshTime() {
     ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
 }
 
-setInterval(refreshTime, 1000);
+if (timeDisplay) {
+	setInterval(refreshTime, 1000);
+}
