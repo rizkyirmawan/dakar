@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-  <h1 class="h3 mb-2 text-gray-800">Data Absensi Karyawan: {{ today()->translatedFormat('d F Y') }}</h1>
+  <h1 class="h3 mb-2 text-gray-800">Data Absensi Karyawan: {{ today()->translatedFormat('d F Y') }} <span id="time"></span></h1>
   <hr>
 
   @include('partials._messages')
@@ -71,4 +71,8 @@
   </div>
 
   @include('partials.modals.absensi.validasiAll')
+@endsection
+
+@section('scripts')
+  <script src="{{ asset('js/app.js') }}"></script>
 @endsection

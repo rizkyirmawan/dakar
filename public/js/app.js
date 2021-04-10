@@ -44,4 +44,20 @@ function formatRupiah(angka, prefix){
   return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
 }
 
+// Disable Readonly Select
 $("#bagian-select").css("pointer-events","none");
+
+
+// Live Clock
+let timeDisplay = document.getElementById("time");
+
+function refreshTime() {
+  let d = new Date();
+  let s = d.getSeconds();
+  let m = d.getMinutes();
+  let h = d.getHours();
+  timeDisplay.textContent = 
+    ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+}
+
+setInterval(refreshTime, 1000);

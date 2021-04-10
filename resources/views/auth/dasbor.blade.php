@@ -12,6 +12,7 @@
 		<div class="col-md-8">
 			<div class="card card-body text-center">
 				<h2 class="text-dark">{{ today()->translatedFormat('d F Y') }}</h2>
+				<h5 class="text-dark" id="time"></h5>
 				@if($absenToday && $absenToday->status == 0)
 					<h4><span class="badge badge-info">Menunggu Validasi</span></h4>
 				@elseif($absenToday && $absenToday->status == 1)
@@ -86,4 +87,8 @@
 
 	</div>
 	@endif
+@endsection
+
+@section('scripts')
+  <script src="{{ asset('js/app.js') }}"></script>
 @endsection
