@@ -22,9 +22,11 @@ Route::middleware(['auth'])->group(function() {
 	// Dasbor Route
 	Route::get('dasbor', [DasborController::class, 'index'])->name('dasbor.index');
 
-	// Edit & Update Password
+	// Edit & Update Password, Profile
 	Route::get('update-password', [AuthController::class, 'editPassword'])->name('auth.editPassword');
 	Route::patch('update-password/{user}', [AuthController::class, 'updatePassword'])->name('auth.updatePassword');
+	Route::get('update-profile', [KaryawanController::class, 'editProfile'])->name('karyawan.editProfile');
+	Route::patch('update-profile/{karyawan}', [KaryawanController::class, 'update'])->name('karyawan.updateProfile');
 
 	// Routes for Admin
 	Route::middleware(['isAdmin'])->group(function() {

@@ -110,7 +110,7 @@ class KaryawanController extends Controller
         $this->storeImage($karyawan);
 
         return redirect()
-                ->route('karyawan.show', ['karyawan' => $karyawan])
+                ->back()
                 ->with('success', 'Data karyawan telah diubah.');
     }
 
@@ -182,5 +182,21 @@ class KaryawanController extends Controller
         } catch(\Exception $e) {
             return back()->with('error', 'Silahkan isi filter.');
         }
+    }
+
+    // Edit Profile
+    public function editProfile()
+    {
+        $title = 'Profil';
+
+        $karyawan = Karyawan::with('user', 'bank', 'bagian')
+                            ->where('id', auth()->user()->userable->id)
+                            ->first();
+
+        $banks = Bank::orderBy('nama_bank')->get();
+
+        $bagian = Bagian::orderBy('nama_bagian')->get();
+
+        return view('auth.editProfile', compact('title', 'karyawan', 'banks', 'bagian'));
     }
 }

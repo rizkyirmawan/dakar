@@ -39,6 +39,12 @@
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
+                @if(auth()->user()->role != 'Admin')
+                <a class="dropdown-item" href="{{ route('karyawan.editProfile') }}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Update Profil
+                </a>
+                @endif
                 <a class="dropdown-item" href="{{ route('auth.editPassword') }}">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Update Password
