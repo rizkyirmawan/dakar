@@ -1,3 +1,22 @@
+// Disable Readonly Select
+$("#bagian-select").css("pointer-events","none");
+
+// Live Clock
+let timeDisplay = document.getElementById("time");
+
+function refreshTime() {
+  let d = new Date();
+  let s = d.getSeconds();
+  let m = d.getMinutes();
+  let h = d.getHours();
+  timeDisplay.textContent = 
+    ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+}
+
+if (timeDisplay) {
+	setInterval(refreshTime, 1000);
+}
+
 let inputRupiah = document.querySelectorAll('#input-rupiah');
 
 if (inputRupiah) {
@@ -42,24 +61,4 @@ function formatRupiah(angka, prefix){
 
   rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
   return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-}
-
-// Disable Readonly Select
-$("#bagian-select").css("pointer-events","none");
-
-
-// Live Clock
-let timeDisplay = document.getElementById("time");
-
-function refreshTime() {
-  let d = new Date();
-  let s = d.getSeconds();
-  let m = d.getMinutes();
-  let h = d.getHours();
-  timeDisplay.textContent = 
-    ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
-}
-
-if (timeDisplay) {
-	setInterval(refreshTime, 1000);
 }
