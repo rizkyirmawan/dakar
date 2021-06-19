@@ -110,7 +110,7 @@ class KaryawanController extends Controller
         $this->storeImage($karyawan);
 
         return redirect()
-                ->back()
+                ->route('karyawan.show', ['karyawan' => $karyawan])
                 ->with('success', 'Data karyawan telah diubah.');
     }
 
